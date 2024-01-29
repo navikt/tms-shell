@@ -40,6 +40,7 @@ jobs:
           cdn-team-name: min-side
           source: ./dist/
           destination: "tms-shell"
+        run : echo $uploaded
 
       - name: "Extract manifest url"
         id: extract-manifest-url
