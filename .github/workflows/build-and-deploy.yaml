@@ -35,17 +35,17 @@ jobs:
         run: "npm run build"
 
       - name: "cdn-upload"
+        id: "min-id"
         uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
           cdn-team-name: min-side
           source: ./dist/
           destination: "tms-shell"
-        run : echo $uploaded
 
       - name: "Extract manifest url"
         id: extract-manifest-url
         run: |
-          files="${{ steps.cdn-upload.outputs.uploaded }}"
+          files="${{ steps.min-id.outputs.uploaded }}"
           first_file=$(echo $files | cut -d',' -f1)
           echo "upload_url=https://cdn.nav.no/$first_file" >> $GITHUB_OUTPUT
 
