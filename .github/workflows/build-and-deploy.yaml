@@ -44,8 +44,8 @@ jobs:
       - name: "Extract manifest url"
         id: extract-manifest-url
         run: |
-          files="${{ steps.cdn-upload.outputs.uploaded }}"
-          echo "${{ steps.cdn-upload.outputs }}"
+          files="${{ steps.upload-file.outputs.uploaded }}"
+          echo ${{ steps.upload-file.outputs }}
 
   update-manifest-dev-gcp:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
