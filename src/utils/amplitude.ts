@@ -11,7 +11,7 @@ export const initAmplitude = () => {
 };
 
 //TODO: komponent må fylles ut med et identifiserende navn for microfrontend
-//Default er at navnet på appen blir benyttet ved replace av "tms-microfrontend-template"
+//Default er at navnet på appen blir benyttet ved replace av "tms-shell"
 export const logNavigereEvent = () => {
-  track("navigere", { komponent: "tms-microfrontend-template" });
+  track("navigere", { komponent: "tms-shell" });
 };

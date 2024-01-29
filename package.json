@@ -1,5 +1,5 @@
 {
-  "name": "tms-microfrontend-template",
+  "name": "tms-shell",
   "version": "1.0.0",
   "type": "module",
   "scripts": {

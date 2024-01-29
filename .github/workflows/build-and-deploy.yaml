@@ -34,12 +34,12 @@ jobs:
       - name: "Build application"
         run: "npm run build"
 
-#      - name: "cdn-upload"
-#        uses: navikt/frontend/actions/cdn-upload/v1@main
-#        with:
-#          cdn-team-name: mitt-team-navn
-#          source: ./dist/
-#          destination: "tms-mikrofrontend-template"
+      - name: "cdn-upload"
+        uses: navikt/frontend/actions/cdn-upload/v1@main
+        with:
+          cdn-team-name: min-side
+          source: ./dist/
+          destination: "tms-shell"
 
       - name: "Extract manifest url"
         id: extract-manifest-url
@@ -48,21 +48,21 @@ jobs:
           first_file=$(echo $files | cut -d',' -f1)
           echo "upload_url=https://cdn.nav.no/$first_file" >> $GITHUB_OUTPUT
 
-#  update-manifest-dev-gcp:
-#    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
-#    needs: build
-#    with:
-#      cluster: dev-gcp
-#      id: "tms-microfrontend-template"
-#      url: ${{needs.build.outputs.upload_url}}
-#    secrets: inherit
+  update-manifest-dev-gcp:
+    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
+    needs: build
+    with:
+      cluster: dev-gcp
+      id: "tms-shell"
+      url: ${{needs.build.outputs.upload_url}}
+    secrets: inherit
 
-#  update-manifest-prod-gcp:
-#    if: github.ref == 'refs/heads/main'
-#    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
-#    needs: build
-#    with:
-#      cluster: prod-gcp
-#      id: "tms-microfrontend-template"
-#      url: ${{needs.build.outputs.upload_url}}
-#    secrets: inherit
+  update-manifest-prod-gcp:
+    if: github.ref == 'refs/heads/main'
+    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
+    needs: build
+    with:
+      cluster: prod-gcp
+      id: "tms-shell"
+      url: ${{needs.build.outputs.upload_url}}
+    secrets: inherit
