@@ -14,7 +14,7 @@ Mikfrontenden blir lastet opp til nav sin CDN ved push til main.
 
 # Kom i gang
 
-1. Bygg tms-mikrofrontend-template ved å kjøre npm run build
+1. Bygg tms-microfrontend-template ved å kjøre npm run build
 2. Start appen lokalt ved å kjøre npm run dev
 3. Appen nås på http://localhost:3000
 
