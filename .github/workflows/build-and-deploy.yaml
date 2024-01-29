@@ -46,9 +46,6 @@ jobs:
         run: |
           files="${{ steps.cdn-upload.outputs.uploaded }}"
           echo "${{ steps.cdn-upload.outputs }}"
-          first_file=$(echo $files | cut -d',' -f1)
-          echo $first_file
-          echo "upload_url=https://cdn.nav.no/$first_file" >> $GITHUB_OUTPUT
 
   update-manifest-dev-gcp:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
