@@ -1,6 +1,6 @@
 # tms-shell
 
-<--- testapp for microfrontend-template-->
+**Dette er en testapp for microfrontend-template**
 Kan brukes som utgangspunkt for å opprette nye microfrontends i Min Side.
 
 # Tilpass repo-et
