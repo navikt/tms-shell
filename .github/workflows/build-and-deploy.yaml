@@ -8,55 +8,56 @@ permissions:
   contents: "read"
   id-token: "write"
   packages: "write"
+  
 
 jobs:
-  build:
-    name: "build"
-    runs-on: "ubuntu-latest"
+#  build:
+#    name: "build"
+#    runs-on: "ubuntu-latest"
+#
+#    outputs:
+#      upload_url: ${{ steps.extract-manifest-url.outputs.upload_url }}
 
-    outputs:
-      upload_url: ${{ steps.extract-manifest-url.outputs.upload_url }}
+#    steps:
+#      - uses: "actions/checkout@v4"
+#      - uses: "actions/setup-node@v4"
+#        with:
+#          node-version: 20
+#          registry-url: "https://npm.pkg.github.com"
+#          cache: "npm"
 
-    steps:
-      - uses: "actions/checkout@v4"
-      - uses: "actions/setup-node@v4"
-        with:
-          node-version: 20
-          registry-url: "https://npm.pkg.github.com"
-          cache: "npm"
+#      - name: "Install dependencies"
+#        run: "npm ci"
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+#
+#      - name: "Build application"
+#        run: "npm run build"
 
-      - name: "Install dependencies"
-        run: "npm ci"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+#      - name: "cdn-upload"
+#        id: "min-id"
+#        uses: nais/deploy/actions/cdn-upload/v2@master
+#        with:
+#          team: min-side
+#          source: ./dist/
+#          destination: "tms-shell"
+#          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+#          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
-      - name: "Build application"
-        run: "npm run build"
-
-      - name: "cdn-upload"
-        id: "min-id"
-        uses: nais/deploy/actions/cdn-upload/v2@master
-        with:
-          team: min-side
-          source: ./dist/
-          destination: "tms-shell"
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-
-      - name: "Extract manifest url"
-        id: extract-manifest-url
-        run: |
-          files="${{ steps.min-id.outputs.uploaded }}"
-          first_file=$(echo $files | cut -d',' -f1)
-          echo "upload_url=https://cdn.nav.no/$first_file" >> $GITHUB_OUTPUT
+#      - name: "Extract manifest url"
+#        id: extract-manifest-url
+#        run: |
+#          files="${{ steps.min-id.outputs.uploaded }}"
+#          first_file=$(echo $files | cut -d',' -f1)
+#          echo "upload_url=https://cdn.nav.no/$first_file" >> $GITHUB_OUTPUT
 
   update-manifest-dev-gcp:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v2.yaml@main
-    needs: build
+#    needs: build
     with:
       cluster: dev-gcp
       id: "tms-shell"
-      url: ${{needs.build.outputs.upload_url}}
+      url: testurl
       commitmsg: ${{ github.event.head_commit.message}}
     secrets: inherit
 
