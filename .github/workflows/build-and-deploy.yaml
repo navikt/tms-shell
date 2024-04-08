@@ -50,7 +50,7 @@ jobs:
           echo "upload_url=https://cdn.nav.no/$first_file" >> $GITHUB_OUTPUT
 
   update-manifest-dev-gcp:
-    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
+    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v2.yaml@main
     needs: build
     with:
       cluster: dev-gcp
