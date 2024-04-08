@@ -4,16 +4,15 @@ on:
     branches:
       - "main"
       - "dev-*"
+permissions:
+  contents: "read"
+  id-token: "write"
+  packages: "write"
 
 jobs:
   build:
     name: "build"
     runs-on: "ubuntu-latest"
-
-    permissions:
-      contents: "read"
-      id-token: "write"
-      packages: "write"
 
     outputs:
       upload_url: ${{ steps.extract-manifest-url.outputs.upload_url }}
