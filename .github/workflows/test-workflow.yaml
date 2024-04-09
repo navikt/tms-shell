@@ -1,0 +1,14 @@
+name: "Test cdnurl update"
+on:
+  workflow_dispatch
+jobs:
+  update-manifest-dev-gcp:
+    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest.yaml@main
+    with:
+      cluster: dev-gcp
+      id: "tms-shell"
+      url: "https://tull.test"
+      commitmsg: ${{ github.event.head_commit.message}}
+    secrets: inherit
+
+
