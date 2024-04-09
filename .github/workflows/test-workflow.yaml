@@ -7,7 +7,7 @@ jobs:
     with:
       cluster: dev-gcp
       id: "tms-shell"
-      url: "https://tull.test"
+      url: "https://cdn.nav.no/test"
       commitmsg: "Tadda!"
     secrets: inherit
 
