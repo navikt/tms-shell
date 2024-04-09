@@ -8,7 +8,7 @@ jobs:
       cluster: dev-gcp
       id: "tms-shell"
       url: "https://tull.test"
-      commitmsg: ${{ github.event.head_commit.message}}
+      commitmsg: "Tadda!"
     secrets: inherit
 
 
